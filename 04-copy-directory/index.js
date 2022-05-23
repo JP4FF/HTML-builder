@@ -4,16 +4,15 @@ const path = require('path');
 let dirOrigin = path.join(__dirname, 'files');
 let dirCopy = path.join(__dirname, 'files-copy');
 
-// fs.rm(dirCopy, {recursive: true}, function(err) {
-//   if (err) {
-//     console.log('Folder \'files-copy\' does not exist');
-//   } else {
-//     console.log('Folder \'files-copy\' was successfuly deleted');
-//     copyDir(dirOrigin, dirCopy);
-//   }
-// });
+fs.rm(dirCopy, {recursive: true, force: true}, function(err) {
+  if (err) {
+    console.log('Folder \'files-copy\' does not exist');
+  } else {
+    console.log('Folder \'files-copy\' was successfuly deleted');
+    copyDir(dirOrigin, dirCopy);
+  }
+});
 
-copyDir(dirOrigin, dirCopy);
 function copyDir(fromDir, toDir) {
   fs.mkdir(toDir, {recursive: true}, function(err) {
     if (err) {
